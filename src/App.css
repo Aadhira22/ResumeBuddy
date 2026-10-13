@@ -1,0 +1,481 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f8;
+  color: #202124;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 28px;
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  color: #4338ca;
+}
+
+.header p {
+  color: #666;
+  line-height: 1.5;
+  padding-top: 20px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.editor,
+.preview {
+  min-width: 0;
+  padding: 24px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 3px 16px #0000000a;
+}
+
+.editor h2,
+.preview h2 {
+  margin-top: 0;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.editor .field {
+  display: block;
+  margin: 18px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.editor .field > span {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.editor input,
+.editor textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #d5d7df;
+  border-radius: 8px;
+  background: #fff;
+  color: #202124;
+  font: inherit;
+  font-weight: normal;
+}
+
+.editor input:focus,
+.editor textarea:focus {
+  outline: 2px solid #a5b4fc;
+  border-color: #6366f1;
+}
+
+.editor textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.hint {
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.editor button,
+.preview-header button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #4338ca;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.editor button:hover:not(:disabled),
+.preview-header button:hover:not(:disabled) {
+  background: #3730a3;
+}
+
+.editor button:disabled,
+.preview-header button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.upload-card {
+  margin-bottom: 28px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.upload-card .field {
+  margin-top: 0;
+}
+
+.upload-card input[type="file"] {
+  padding: 10px;
+  font-size: 13px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.error,
+.success {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+.error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.success {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+/* PDF preview header */
+
+.preview {
+  width: 100%;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.preview-header h2 {
+  margin: 0;
+}
+
+.preview-header button {
+  flex-shrink: 0;
+}
+
+/* Embedded PDF viewer */
+
+.pdf-preview {
+  position: relative;
+  width: 100%;
+  height: min(1100px, 85vh);
+  min-height: 600px;
+  overflow: hidden;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #e5e7eb;
+}
+
+.pdf-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+/* Placeholder before the first PDF is generated */
+
+.pdf-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 32px 24px;
+  text-align: center;
+  color: #4b5563;
+}
+
+.pdf-placeholder-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 76px;
+  margin-bottom: 16px;
+  border: 2px solid #9ca3af;
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.pdf-placeholder h3 {
+  margin: 0 0 8px;
+  color: #1f2937;
+}
+
+.pdf-placeholder p {
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1000px) {
+  .app {
+    padding: 20px;
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pdf-preview {
+    height: 850px;
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 12px;
+  }
+
+  .editor,
+  .preview {
+    padding: 16px;
+  }
+
+  .workspace {
+    gap: 16px;
+  }
+
+  .preview-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .preview-header button {
+    width: 100%;
+  }
+
+  .pdf-preview {
+    height: 75vh;
+    min-height: 500px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header-top p {
+  margin-bottom: 0;
+}
+
+.account-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.account-actions button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #4338ca;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  margin: 32px auto;
+  padding: 28px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 3px 16px #0000000a;
+}
+
+.auth-card h2 {
+  margin-top: 0;
+  color: #202124;
+}
+
+.auth-card > p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.auth-card .field {
+  display: block;
+  margin: 20px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-card .field label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.auth-card .field input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d5d7df;
+  border-radius: 8px;
+  background: #fff;
+  color: #202124;
+  font: inherit;
+  font-weight: normal;
+}
+
+.auth-card .field input:focus {
+  outline: 2px solid #a5b4fc;
+  border-color: #6366f1;
+}
+
+.auth-card form > button {
+  width: 100%;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #4338ca;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.auth-switch {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-card .text-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #4338ca;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 20px;
+  }
+
+  .header-top {
+    align-items: flex-start;
+  }
+}
+
+.saved-resumes {
+  margin-bottom: 28px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.saved-resumes-header,
+.saved-resume-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.saved-resumes-header {
+  margin-bottom: 16px;
+}
+
+.saved-resumes-header h2 {
+  margin: 0;
+}
+
+.saved-resume-item {
+  padding: 14px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.saved-resume-item p {
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.saved-resumes button,
+.saved-resume-item button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 7px;
+  background: #4338ca;
+  color: #fff;
+  cursor: pointer;
+}
+
+.saved-resume-item button.delete-button {
+  background: #dc2626;
+}
+
+@media (max-width: 600px) {
+  .saved-resumes-header,
+  .saved-resume-item {
+    align-items: flex-start;
+  }
+}

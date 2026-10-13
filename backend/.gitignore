@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Allow an example environment file to be committed
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Generated files
+coverage/
+dist/
